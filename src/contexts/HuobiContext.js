@@ -16,6 +16,7 @@ const HuobiProvider = ({ children }) => {
 
   // Fetch data from local API
   const fetchData = useCallback(async () => {
+    if (normalizedPair === '') return; // Do not fetch if there is no pair
     const response = await fetch(`${process.env.REACT_APP_HUOBI_URL}/${normalizedPair}`);
     const result = await response.json();
     setPrice(result.price);
